@@ -16,7 +16,6 @@ class TestMnvram(unittest.TestCase):
 
   def test_sshd_enable(self):
     nvram = {}
-    from read_sshd_config import readSshdSettings
     from mnvram import MozaiqRouter
     router = MozaiqRouter(nvram)
     router.updateSshd(sshSettingsFile='test/sshd_settings_files/sshd_enable.json')
@@ -30,7 +29,6 @@ class TestMnvram(unittest.TestCase):
 
   def test_sshd_disable(self):
     nvram = {}
-    from read_sshd_config import readSshdSettings
     from mnvram import MozaiqRouter
     router = MozaiqRouter(nvram)
     router.updateSshd(sshSettingsFile='test/sshd_settings_files/sshd_disable.json')
@@ -38,7 +36,6 @@ class TestMnvram(unittest.TestCase):
 
   def test_sshd_enable_wan_disable(self):
     nvram = {}
-    from read_sshd_config import readSshdSettings
     from mnvram import MozaiqRouter
     router = MozaiqRouter(nvram)
     router.updateSshd(sshSettingsFile='test/sshd_settings_files/sshd_enable_wan_disable.json')
@@ -56,7 +53,6 @@ class TestMnvram(unittest.TestCase):
 
   def test_sshd_enable_wan_enable(self):
     nvram = {}
-    from read_sshd_config import readSshdSettings
     from mnvram import MozaiqRouter
     router = MozaiqRouter(nvram)
     router.updateSshd(sshSettingsFile='test/sshd_settings_files/sshd_enable_wan_enable.json')
