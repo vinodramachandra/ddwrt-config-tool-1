@@ -71,19 +71,3 @@ class TestMnvram(unittest.TestCase):
 
     self.assertEqual(router.nvram['remote_mgt_ssh'], '1')
     self.assertEqual(router.nvram['sshd_wanport'], '56')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
