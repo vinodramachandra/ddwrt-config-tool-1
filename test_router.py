@@ -84,11 +84,11 @@ class TestRouter(unittest.TestCase):
     nvram = {}
     router = Router(nvram)
     router.changeSshdStatus(True)
-    router.enableWanSsh(remoteAccess=True, wanPort=66)
+    router.enableWanSsh(enableRemoteAccess=True, wanPort=66)
     self.assertEqual(router.nvram['remote_mgt_ssh'], '1')
     self.assertEqual(router.nvram['sshd_wanport'], '66')
 
-    router.enableWanSsh(remoteAccess=False)
+    router.enableWanSsh(enableRemoteAccess=False)
     self.assertEqual(router.nvram['remote_mgt_ssh'], '0')
 
   def test_enable_ssh_key_auth(self):
@@ -104,6 +104,3 @@ class TestRouter(unittest.TestCase):
 
     shouldBe = 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDGgXglKfhxM27daib6JRgfBv1iCxMedRzGFOANN0HuebUWXzwgf+KtwWMK2/rQzxuZIDC6a2cNXMkU/pRiTrHwBP/L+PNfF6Xq+U/3pKjou776U1uNKT4pBdi6aBhAb30mkK81CAArh+lp5/ZpwRsMAnSJ4H6j9j7aUhkL70iKMe3glBjnL+HmETOxC/X3u28llMkEHt4ipOhRLD9+669HILyUfEYKbFvIKI9ZPGnV1ZbP1Ci/5DvThHHuF1lWB691r63kZdy3CKGvtqyT5e2sCpLhwIAWE/DOXx9tunZugTOiegLCyEizf9rNe8eMIvRVkMoXptxi5Bn1Oq2UGLqH vinod@Thinkpad\nssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCmNQmpuQSQR5iphz+hVZve+no3+TtfLoN8J2MjALtZ1RgiHyIV/q0KnClGz0n+55/bHO3UzDzq+Ps5SnMJcosk8Ywp0Rt0GfTOAAp5qrCvfnb1AihPDoFcOXK/uqrRV5IeY3he3VZ33kCjQ6nFMRFVnSFiTU9JSL05Wi0wmQTD1t/EbLr2m2FhalGh7YzBArJKFJbUEpTFuPHZrdcuQiD9hKxyz6HiZOiplOHGtbVAqrow62zLNHOpquI0NXwuKbD9DaeMmGnbibYurYNEVtnGDKTGTVUn3Pc8EjkjKuZyJpsdB/jZcpvSjcoJGSm17+K6QVriBJy4acUfQWOWaUAd vinod@vinod\n'
     self.assertEqual(router.nvram['sshd_authorized_keys'], shouldBe)
-
-
-

@@ -97,14 +97,13 @@ class Router:
       self.nvram['sshd_enable'] = '1'
       self.nvram['sshd_port'] = '22'
       self.nvram['sshd_passwd_auth'] = '0'
-      self.nvram['sshd_authorized_keys'] = ''    # TODO: how to add multiple ssh keys. displaying all keys here is not good. Reading from file?
+      self.nvram['sshd_authorized_keys'] = ''
       self.nvram['sshd_forwarding'] = '0'
     else:
       self.nvram['sshd_enable'] = '0'
 
-
-  def enableWanSsh(self, remoteAccess, wanPort=22):
-    if remoteAccess:
+  def enableWanSsh(self, enableRemoteAccess, wanPort=22):
+    if enableRemoteAccess:
       self.nvram['remote_mgt_ssh'] = '1'
       self.nvram['sshd_wanport'] = str(wanPort)
     else:
@@ -127,17 +126,18 @@ class Router:
 
     if sshdSettings['sshd_status'] == 'enable':
       self.changeSshdStatus(True)
+      if sshdSettings['wan_port_ssh_remote_access'] == 'enable':
+        self.enableWanSsh(enableRemoteAccess=True, wanPort=sshdSettings['ssh_wan_port_number'])
+      else:
+        self.enableWanSsh(enableRemoteAccess=False)
+
+      self.enableSshKeyAuth(sshdSettings['authorized_keys'])
+
     elif sshdSettings['sshd_status'] == 'disable':
       self.changeSshdStatus(False)
 
 
-    if sshdSettings['wan_port_ssh_remote_access'] == 'enable':
-      self.enableWanSsh(remoteAccess=True, wanPort=sshdSettings['ssh_wan_port_number'])
 
-    else:
-      self.enableWanSsh(remoteAccess=False)
-
-    self.enableSshKeyAuth(sshdSettings['authorized_keys'])
 
 
 
